@@ -1,0 +1,13 @@
+* text=auto
+
+*.cs text
+*.shader text
+
+*.unity text
+*.prefab text
+*.asset text
+*.meta text
+
+*.png binary
+*.jpg binary
+*.fbx binary
