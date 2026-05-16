@@ -8,3 +8,9 @@ UserSettings/
 MemoryCaptures/
 .vscode/
 .idea/
+.plastic/
+PlasticSCM/
+plastic.workspace
+*.csproj
+*.sln
+*.slnx
