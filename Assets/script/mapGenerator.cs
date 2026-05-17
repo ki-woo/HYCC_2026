@@ -1,46 +1,71 @@
 using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class mapGenerator
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PolygonCollider2D))]
+public class mapGenerator : MonoBehaviour
 {
     [Header("Map Setting")]
+    public float mapDepth = 10;
+
+    [Header("Noise Setting")]
+    public int mapLength = 250;
+    public int octaveInterval1 = 25;
+    public int octaveInterval2 = 5;
+    public float octaveScale1 = 25;
+    public float octaveScale2 = 5;
     public float maxGradient = 1;
     public int smoothness = 10;
 
+    private Rigidbody2D rigid;
+    private Mesh mesh;
+    private PolygonCollider2D col;
+
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.bodyType = RigidbodyType2D.Kinematic;
+
+        mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+        col = GetComponent<PolygonCollider2D>();
+        CreateMesh(mapGen());
+    }
 
     private List<float> mapGen()
     {
         // 총 길이 250 (-125 ~ 125), 각 칸 당 smoothness
-        List<float> noise1 = monoNoise(11); // 간격 25 10번
-        List<float> noise2 = monoNoise(51); // 간격 5 50번
+        List<float> noise1 = monoNoise(octaveInterval1); // 간격 25 10번
+        List<float> noise2 = monoNoise(octaveInterval2); // 간격 5 50번
 
         List<float> noise = new List<float>();
-        for(int i = 0; i <= 250 * smoothness; i++)
+        for(int i = 0; i <= mapLength * smoothness; i++)
         {
-            noise.Append(noise1[i] + noise2[i]);
+            noise.Add(noise1[i] * octaveScale1 + noise2[i] * octaveScale2);
         }
 
         return noise;
     }
 
-    private List<float> monoNoise(int pointCount)
+    private List<float> monoNoise(int octaveInterval)
     {
+        int pointCount = mapLength / octaveInterval + 2;
+
         // generate point
         List<float> noisePoint = new List<float>();
-        for(int i = 1; i <= pointCount; i++)
+        for(int i = 0; i < pointCount; i++)
         {
-            noisePoint.Append(Random.Range(-maxGradient, maxGradient));
+            noisePoint.Add(Random.Range(-maxGradient, maxGradient));
         }
 
         // interpolation
-        int noiseCount = noisePoint.Count;
-
         List<float> monoNoise = new List<float>();
-        float interval = 250 / (noiseCount - 1) * smoothness;
+        float interval = octaveInterval * smoothness;
 
-        for(int i = 0; i < noiseCount - 1; i++)
+        for(int i = 0; i < pointCount - 1; i++)
         {
             float A = noisePoint[i] + noisePoint[i+1];
             float B = noisePoint[i] * -2 - noisePoint[i+1];
@@ -49,11 +74,47 @@ public class mapGenerator
             for(int j = 0; j < interval; j++)
             {
                 float t = 1 / interval * j;
-                monoNoise.Append(A * t * t * t + B * t * t + C * t);
+                monoNoise.Add(A * t * t * t + B * t * t + C * t);
             }
         }
-        monoNoise.Append(noisePoint[noiseCount -1]);
+        monoNoise.Add(0f);
 
         return monoNoise;
+    }
+
+    private void CreateMesh(List<float> noise)
+    {
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+        List<Vector2> uv = new List<Vector2>();
+        List<Vector2> points = new List<Vector2>();
+
+        for(int i = 0; i < noise.Count; i++)
+        {
+            vertices.Add(new Vector3((float)i / smoothness - mapLength / 2, noise[i], 0));
+            vertices.Add(new Vector3((float)i / smoothness - mapLength / 2, -mapDepth, 0));
+
+            uv.Add(new Vector2((float)i / smoothness - mapLength / 2, noise[i]));
+            uv.Add(new Vector2((float)i / smoothness - mapLength / 2, -mapDepth));
+
+            points.Add(new Vector2((float)i / smoothness - mapLength / 2, noise[i]));
+        }
+
+        for(int i = 0; i < noise.Count; i++)
+        {
+            points.Add(new Vector2(mapLength / 2 - (float)i / smoothness, -mapDepth));
+        }
+
+        for(int i = 0; i < noise.Count - 1; i++)
+        {
+            triangles.AddRange(new int[] {i * 2, i * 2 + 2, i * 2 + 1, i * 2 + 2, i * 2 + 3, i * 2 + 1});
+        }
+
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.uv = uv.ToArray();
+        col.points = points.ToArray();
+
+        mesh.RecalculateNormals();
     }
 }

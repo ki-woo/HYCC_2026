@@ -1,4 +1,0 @@
-repository "minjun/minjun@14568592259815@cloud"
-  path "/"
-    br "/main"
-    co "/main"
