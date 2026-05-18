@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
@@ -10,6 +9,7 @@ public class mapGenerator : MonoBehaviour
 {
     [Header("Map Setting")]
     public float mapDepth = 10;
+    public Material material;
 
     [Header("Noise Setting")]
     public int mapLength = 250;
@@ -33,6 +33,9 @@ public class mapGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         col = GetComponent<PolygonCollider2D>();
         CreateMesh(mapGen());
+
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        renderer.material = material;
     }
 
     private List<float> mapGen()
@@ -91,19 +94,22 @@ public class mapGenerator : MonoBehaviour
 
         for(int i = 0; i < noise.Count; i++)
         {
-            vertices.Add(new Vector3((float)i / smoothness - mapLength / 2, noise[i], 0));
-            vertices.Add(new Vector3((float)i / smoothness - mapLength / 2, -mapDepth, 0));
+            float x = (float)i / smoothness - mapLength / 2;
 
-            uv.Add(new Vector2((float)i / smoothness - mapLength / 2, noise[i]));
-            uv.Add(new Vector2((float)i / smoothness - mapLength / 2, -mapDepth));
+            // 2i
+            vertices.Add(new Vector3(x, noise[i], 0));
+            vertices.Add(new Vector3(x, -mapDepth, 0));
 
-            points.Add(new Vector2((float)i / smoothness - mapLength / 2, noise[i]));
+            // 2i
+            uv.Add(new Vector2(x, noise[i]));
+            uv.Add(new Vector2(x, -mapDepth));
+
+            // i
+            points.Add(new Vector2(x, noise[i]));
         }
 
-        for(int i = 0; i < noise.Count; i++)
-        {
-            points.Add(new Vector2(mapLength / 2 - (float)i / smoothness, -mapDepth));
-        }
+        points.Add(new Vector2(mapLength / 2, -mapDepth));
+        points.Add(new Vector2(-mapLength / 2, -mapDepth));
 
         for(int i = 0; i < noise.Count - 1; i++)
         {

@@ -8,9 +8,11 @@ public class camera : MonoBehaviour
     public Transform player2;
 
     [Header("Camera Setting")]
-    public float scale;
-    public float minimumPlayerRange;
-    public float defaultOrthographicSize = 5f;
+    public float scale = 0.6f;
+    public float minimumPlayerDistance = 22f;
+    public float minimumPlayerHeight = -4f;
+    public float defaultOrthographicSize = 7f;
+    public Vector3 cameraOffset = Vector3.zero;
 
     private Camera cam;
     private Transform trans;
@@ -23,14 +25,22 @@ public class camera : MonoBehaviour
 
     void Update()
     {
-        // trans.position = new Vector3((player1.position.x + player2.position.x) / 2, 0, trans.position.z);
+        float x = (player1.position.x + player2.position.x) / 2;
+        float y = 0;
         
-        float maxRange = Mathf.Max(math.abs(player1.position.x), math.abs(player2.position.x));
-
-        if(maxRange >= minimumPlayerRange)
+        float playerDistance = math.abs(player1.position.x - player2.position.x);
+        if(playerDistance >= minimumPlayerDistance)
         {
-            cam.orthographicSize = defaultOrthographicSize + (maxRange - minimumPlayerRange) * scale;
-            trans.position = new Vector3(0, (maxRange - minimumPlayerRange) * scale, -10);
+            cam.orthographicSize = defaultOrthographicSize + (playerDistance - minimumPlayerDistance) * scale;
+            y = (playerDistance - minimumPlayerDistance) * scale;
         }
+
+        float minimumHight = Mathf.Min(player1.position.y, player2.position.y);
+        if(minimumHight <= minimumPlayerHeight)
+        {
+            y += minimumHight - minimumPlayerHeight;
+        }
+
+        trans.position = new Vector3(x, y, -10) + cameraOffset;
     }
 }
