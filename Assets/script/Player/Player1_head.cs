@@ -3,37 +3,19 @@ using UnityEngine;
 
 public class Player1_head : MonoBehaviour
 {
-    [Header("rotate")]
     public float headDistance = 0.5f;
-    public float angleSpeed = 5f;
 
     private Transform trans;
-    private float angleInput;
 
     void Start()
     {
         trans = GetComponent<Transform>();
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            angleInput = 1;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            angleInput = -1;
-        }
-        else
-        {
-            angleInput = 0;
-        }
-    }
-
     void FixedUpdate()
     {
-        trans.eulerAngles = new Vector3(0, 0, trans.eulerAngles.z + angleInput * angleSpeed);
-        trans.localPosition = new Vector3(math.cos(transform.eulerAngles.z * math.PI / 180), math.sin(transform.eulerAngles.z * math.PI / 180), 0) * headDistance;
+        float angle = transform.parent.GetComponent<Player1>().angle;
+        trans.eulerAngles = new Vector3(0, 0, angle);
+        trans.localPosition = new Vector3(math.cos(angle * math.PI / 180f), math.sin(angle * math.PI / 180f), 0) * headDistance;
     }
 }
