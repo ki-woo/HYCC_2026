@@ -1,0 +1,30 @@
+:root {
+}
+
+.Button {
+    background-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: url("project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&guid=19b9bfe81b147ba4f91b639e7c1b07d9&type=3#BoldPixels");
+    font-size: 100px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    height: 150px;
+    border-top-left-radius: 75px;
+    border-top-right-radius: 75px;
+    border-bottom-right-radius: 75px;
+    border-bottom-left-radius: 75px;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    width: 800px;
+}
+
+.Button:hover {
+    transition-timing-function: ease-out-elastic;
+    transition-duration: 0.5s;
+    scale: 1.05 1.05 1.05;
+}
