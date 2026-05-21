@@ -58,6 +58,6 @@
     background-color: rgba(64, 64, 64, 0.502);
 }
 
-.AfterMessage {
-    opacity: 1;
-}
+
+
+

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class inGame_UIController : MonoBehaviour
@@ -17,6 +18,10 @@ public class inGame_UIController : MonoBehaviour
     private Button quit;
     private Button backToMenu;
 
+    private float alpha = 1f;
+    private bool start = true;
+    private bool end = false;
+
     private void Start()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
@@ -28,12 +33,9 @@ public class inGame_UIController : MonoBehaviour
         // fade
         fadeLayer = root.Q<VisualElement>("FadeLayer");
 
-        fadeLayer.style.display = DisplayStyle.None;
-        fadeLayer.RemoveFromClassList("AfterFading");
-
         // quit
         quit = root.Q<Button>("Quit");
-        quit.RegisterCallback<ClickEvent>(Win);
+        quit.RegisterCallback<ClickEvent>(Fade);
 
         // win
         winningMessage = root.Q<VisualElement>("WinningMessage");
@@ -49,22 +51,49 @@ public class inGame_UIController : MonoBehaviour
         // back to menu
         backToMenu = root.Q<Button>("BackToMenu");
         backToMenu.RegisterCallback<ClickEvent>(Fade);
+
+        // start fade
+        fadeLayer.style.display = DisplayStyle.Flex;
     }
 
     private void Update()
     {
+        // fade out
+        if (alpha > 0 && start)
+        {
+            alpha -= Time.deltaTime * 4;
+
+            fadeLayer.style.opacity = alpha;
+        }
+        else if(start)
+        {
+            fadeLayer.style.display = DisplayStyle.None;
+            start = false;
+        }
+
+        // fade out
+        if (alpha < 1 && end)
+        {
+            alpha += Time.deltaTime * 4;
+
+            fadeLayer.style.opacity = alpha;
+        }
+
         // angle
         float angle1 = player1.angle % 180f;
         float angle2 = (180f - player2.angle) % 180f;
 
         leftAngle.text = "Angle : " + angle1.ToString("F2");
         rightAngle.text = "Angle : " +  angle2.ToString("F2");
+
+        // score
     }
 
     private void Fade(ClickEvent evt)
     {
         fadeLayer.style.display = DisplayStyle.Flex;
-        fadeLayer.AddToClassList("AfterFading");
+        end = true;
+        Invoke("LoadMenu", 0.3f);
     }
 
     private void Win(ClickEvent evt)
@@ -80,5 +109,10 @@ public class inGame_UIController : MonoBehaviour
     private void VisualizeButton()
     {
         back.style.display = DisplayStyle.Flex;
+    }
+
+    private void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

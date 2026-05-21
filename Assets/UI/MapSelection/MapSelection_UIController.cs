@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MapSelection_UIController : MonoBehaviour
@@ -34,21 +35,24 @@ public class MapSelection_UIController : MonoBehaviour
 
     private void BackToMenu(ClickEvent evt)
     {
-        Debug.Log("aaa");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void PlayMars(ClickEvent evt)
     {
+        mapData.mapID = 0;
         Fade();
     }
 
     private void PlayEarth(ClickEvent evt)
     {
+        mapData.mapID = 1;
         Fade();
     }
 
     private void PlayJupiter(ClickEvent evt)
     {
+        mapData.mapID = 2;
         Fade();
     }
 
@@ -56,5 +60,11 @@ public class MapSelection_UIController : MonoBehaviour
     {
         fadeLayer.style.display = DisplayStyle.Flex;
         fadeLayer.AddToClassList("AfterFading");
+        Invoke("LoadMap", 0.3f);
+    }
+
+    private void LoadMap()
+    {
+        SceneManager.LoadScene("Planet");
     }
 }

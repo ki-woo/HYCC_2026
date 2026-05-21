@@ -153,7 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::mapGenerator
   mapDepth: 30
-  material: {fileID: 2100000, guid: 6ffb180d942a9d840b2cfbfdd51e11b0, type: 2}
+  material:
+  - {fileID: 2100000, guid: 6ffb180d942a9d840b2cfbfdd51e11b0, type: 2}
+  - {fileID: 2100000, guid: fc16743234fb3dc48970b0dccd796d92, type: 2}
+  - {fileID: 2100000, guid: a68161089a8456744a97452ef7a84bb4, type: 2}
   mapLength: 280
   octaveInterval1: 25
   octaveInterval2: 5
@@ -468,7 +471,7 @@ MonoBehaviour:
   minimumPlayerDistance: 22
   minimumPlayerHeight: -4
   defaultOrthographicSize: 7
-  cameraOffset: {x: 0, y: 0, z: 0}
+  cameraOffset: {x: 0, y: -2, z: 0}
 --- !u!1 &571747185
 GameObject:
   m_ObjectHideFlags: 0

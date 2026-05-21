@@ -9,7 +9,7 @@ public class mapGenerator : MonoBehaviour
 {
     [Header("Map Setting")]
     public float mapDepth = 10;
-    public Material material;
+    public Material[] material;
 
     [Header("Noise Setting")]
     public int mapLength = 250;
@@ -35,7 +35,7 @@ public class mapGenerator : MonoBehaviour
         CreateMesh(mapGen());
 
         MeshRenderer renderer = GetComponent<MeshRenderer>();
-        renderer.material = material;
+        renderer.material = material[mapData.mapID];
     }
 
     private List<float> mapGen()
