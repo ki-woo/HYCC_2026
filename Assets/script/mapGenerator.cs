@@ -35,6 +35,9 @@ public class mapGenerator : MonoBehaviour
 
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         renderer.material = material[mapData.mapID];
+
+        mapData.leftScore = 0;
+        mapData.rightScore = 0;
     }
 
     public void Update()

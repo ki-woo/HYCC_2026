@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    public float explosionRadius = 1;
+    private float explosionRadius = 1;
     private float power = 15f;
     private Transform trans;
     private Rigidbody2D rigid;
@@ -19,6 +19,11 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player2"))
+            mapData.leftScore += 1;
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player1"))
+            mapData.rightScore += 1;
+
         ReformGround();
         Destroy(gameObject);
     }

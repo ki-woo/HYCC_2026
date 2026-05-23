@@ -11,6 +11,8 @@ public class inGame_UIController : MonoBehaviour
     private Label leftAngle;
     private Label rightAngle;
 
+    private Label score;
+
     private VisualElement fadeLayer;
     private VisualElement winningMessage;
     private VisualElement back;
@@ -21,6 +23,7 @@ public class inGame_UIController : MonoBehaviour
     private float alpha = 1f;
     private bool start = true;
     private bool end = false;
+    private bool stop = false;
 
     private void Start()
     {
@@ -29,6 +32,9 @@ public class inGame_UIController : MonoBehaviour
         // angle
         leftAngle = root.Q<Label>("LeftAngle");
         rightAngle = root.Q<Label>("RightAngle");
+
+        // score
+        score = root.Q<Label>("ScoreBoard");
 
         // fade
         fadeLayer = root.Q<VisualElement>("FadeLayer");
@@ -42,6 +48,7 @@ public class inGame_UIController : MonoBehaviour
 
         winningMessage.style.display = DisplayStyle.None;
         winningMessage.RemoveFromClassList("AfterMessage");
+        youWin = root.Q<Label>("YouWin");
 
         // back
         back = root.Q<VisualElement>("Back");
@@ -87,6 +94,21 @@ public class inGame_UIController : MonoBehaviour
         rightAngle.text = "Angle : " +  angle2.ToString("F2");
 
         // score
+        if(!stop)
+            score.text = mapData.leftScore.ToString() + " : " + mapData.rightScore.ToString();
+
+        if(mapData.leftScore == 3 && !stop)
+        {
+            youWin.text = "Left Win";
+            stop = true;
+            Invoke("Win", 0.7f);
+        }
+        else if(mapData.rightScore == 3 && !stop)
+        {
+            youWin.text = "Right Win";
+            stop = true;
+            Invoke("Win", 0.7f);
+        }
     }
 
     private void Fade(ClickEvent evt)
@@ -96,14 +118,12 @@ public class inGame_UIController : MonoBehaviour
         Invoke("LoadMenu", 0.7f);
     }
 
-    private void Win(ClickEvent evt)
+    private void Win()
     {
-        // 승리자 이름 띄우기 => youWin
-
         winningMessage.style.display = DisplayStyle.Flex;
         winningMessage.AddToClassList("AfterMessage");
 
-        Invoke("VisualizeButton", 1f);
+        Invoke("VisualizeButton", 2f);
     }
 
     private void VisualizeButton()
