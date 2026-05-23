@@ -60,7 +60,7 @@ public class MapSelection_UIController : MonoBehaviour
     {
         fadeLayer.style.display = DisplayStyle.Flex;
         fadeLayer.AddToClassList("AfterFading");
-        Invoke("LoadMap", 0.3f);
+        Invoke("LoadMap", 0.5f);
     }
 
     private void LoadMap()

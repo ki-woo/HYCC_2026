@@ -93,7 +93,7 @@ public class inGame_UIController : MonoBehaviour
     {
         fadeLayer.style.display = DisplayStyle.Flex;
         end = true;
-        Invoke("LoadMenu", 0.3f);
+        Invoke("LoadMenu", 0.7f);
     }
 
     private void Win(ClickEvent evt)

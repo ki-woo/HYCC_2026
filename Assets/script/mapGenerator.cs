@@ -20,14 +20,13 @@ public class mapGenerator : MonoBehaviour
     public float maxGradient = 1;
     public int smoothness = 10;
 
-    private Rigidbody2D rigid;
+    private Transform trans;
     private Mesh mesh;
     private PolygonCollider2D col;
 
     private void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.bodyType = RigidbodyType2D.Kinematic;
+        trans = GetComponent<Transform>();
 
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -36,6 +35,25 @@ public class mapGenerator : MonoBehaviour
 
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         renderer.material = material[mapData.mapID];
+    }
+
+    public void Update()
+    {
+        // map reform
+        if (mapData.exploded)
+        {
+            mesh.Clear();
+
+            mesh.vertices = mapData.vertices;
+            mesh.uv = mapData.uv;
+            mesh.triangles = mapData.triangles;
+            col.points = mapData.points;
+
+            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
+
+            mapData.exploded = false;
+        }
     }
 
     private List<float> mapGen()
@@ -115,6 +133,14 @@ public class mapGenerator : MonoBehaviour
         {
             triangles.AddRange(new int[] {i * 2, i * 2 + 2, i * 2 + 1, i * 2 + 2, i * 2 + 3, i * 2 + 1});
         }
+
+        mapData.pos = trans.position;
+        mapData.mapLength = mapLength;
+        mapData.smoothness = smoothness;
+        mapData.vertices = vertices.ToArray();
+        mapData.triangles = triangles.ToArray();
+        mapData.uv = uv.ToArray();
+        mapData.points = points.ToArray();
 
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
