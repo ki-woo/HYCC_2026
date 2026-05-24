@@ -40,6 +40,9 @@ public class mapGenerator : MonoBehaviour
 
         mapData.leftScore = 0;
         mapData.rightScore = 0;
+        mapData.round = 0;
+        mapData.turn = Random.Range(0,2);
+        mapData.missileTurn = mapData.turn;
 
         Physics2D.gravity = gravity[mapData.mapID];
     }

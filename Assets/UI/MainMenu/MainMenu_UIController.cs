@@ -7,7 +7,7 @@ public class MainMenu_UIController : MonoBehaviour
     private VisualElement fadeLayer;
 
     private Button play;
-    private Button description;
+    private Button control;
     private Button quit;
 
     private float alpha = 1f;
@@ -19,11 +19,11 @@ public class MainMenu_UIController : MonoBehaviour
         fadeLayer = root.Q<VisualElement>("FadeLayer");
 
         play = root.Q<Button>("Play");
-        description = root.Q<Button>("Description");
+        control = root.Q<Button>("Control");
         quit = root.Q<Button>("Quit");
 
         play.RegisterCallback<ClickEvent>(Play);
-        description.RegisterCallback<ClickEvent>(Description);
+        control.RegisterCallback<ClickEvent>(Control);
         quit.RegisterCallback<ClickEvent>(Quit);
 
         fadeLayer.style.display = DisplayStyle.Flex;
@@ -48,9 +48,9 @@ public class MainMenu_UIController : MonoBehaviour
         SceneManager.LoadScene("MapSelection");
     }
 
-    private void Description(ClickEvent evt)
+    private void Control(ClickEvent evt)
     {
-        Debug.Log("ddd");
+        SceneManager.LoadScene("Control");
     }
 
     private void Quit(ClickEvent evt)

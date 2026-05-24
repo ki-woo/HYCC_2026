@@ -25,25 +25,31 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
-        // move input
-        moveInput = 0;
+        if(mapData.turn == 1)
+        {
+            // move input
+            moveInput = 0;
 
-        if (Input.GetKey(KeyCode.J))
-            moveInput += -1;
+            if (Input.GetKey(KeyCode.J))
+                moveInput += -1;
 
-        if (Input.GetKey(KeyCode.L))
-            moveInput += 1;
+            if (Input.GetKey(KeyCode.L))
+                moveInput += 1;
 
-        // angle
-        if (Input.GetKey(KeyCode.I))
-            angle -= Time.deltaTime * angleSpeed;;
-        
-        if (Input.GetKey(KeyCode.K))
-            angle += Time.deltaTime * angleSpeed;;
+            // angle
+            if (Input.GetKey(KeyCode.I))
+                angle -= Time.deltaTime * angleSpeed;;
 
-        // shoot
-        if (Input.GetKeyDown(KeyCode.O))
-            Instantiate(missile, trans.position, Quaternion.Euler(0, 0, angle));
+            if (Input.GetKey(KeyCode.K))
+                angle += Time.deltaTime * angleSpeed;;
+
+            // shoot
+            if (Input.GetKeyDown(KeyCode.O) && mapData.missileTurn == 1)
+            {
+                Instantiate(missile, trans.position, Quaternion.Euler(0, 0, angle));
+                mapData.missileTurn = 0;
+            }
+        }
     }
 
     void FixedUpdate()

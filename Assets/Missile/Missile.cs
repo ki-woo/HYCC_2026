@@ -21,11 +21,24 @@ public class Missile : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player2"))
             mapData.leftScore += 1;
+
         if(other.gameObject.layer == LayerMask.NameToLayer("Player1"))
             mapData.rightScore += 1;
+        
+        mapData.turn += 1;
+        mapData.turn %= 2;
+        mapData.round += 1;
 
         ReformGround();
         Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        if(trans.position.y <= -20)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void ReformGround()

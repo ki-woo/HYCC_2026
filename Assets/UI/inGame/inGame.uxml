@@ -9,15 +9,18 @@
             <ui:Label text="Angle : 0.00" name="RightAngle" style="font-size: 70px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); width: 100px; height: 100px; -unity-text-align: lower-right;"/>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="TurnDisplay" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; flex-direction: row-reverse;">
+        <ui:VisualElement name="Turn" style="width: 100px; height: 100px; background-color: rgb(255, 0, 0); border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
+    </ui:VisualElement>
     <ui:VisualElement name="Button" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
         <ui:Button text="&lt;" name="Quit" class="Button"/>
     </ui:VisualElement>
-    <ui:VisualElement name="WinningMessage" class="BeforeMessage AfterMessage">
+    <ui:VisualElement name="WinningMessage" class="BeforeMessage AfterMessage" style="display: flex;">
         <ui:Label text="Blue Win" name="YouWin" style="font-size: 200px; -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); color: rgb(255, 236, 0); -unity-text-align: middle-center; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);"/>
     </ui:VisualElement>
-    <ui:VisualElement name="Back" style="width: 100%; height: 100%; position: absolute; justify-content: space-evenly; align-items: center;">
+    <ui:VisualElement name="Back" style="width: 100%; height: 100%; position: absolute; justify-content: space-evenly; align-items: center; display: flex;">
         <ui:VisualElement style="flex-grow: 0; height: 25%; width: 50%; flex-shrink: 0;"/>
         <ui:Button text="Back to Menu" name="BackToMenu" class="Button" style="width: 800px; height: 150px; font-size: 100px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); border-top-left-radius: 75px; border-top-right-radius: 75px; border-bottom-right-radius: 75px; border-bottom-left-radius: 75px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgb(0, 0, 0);"/>
     </ui:VisualElement>
-    <ui:VisualElement name="FadeLayer" style="opacity: 0; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 0, 0);"/>
+    <ui:VisualElement name="FadeLayer" style="opacity: 0; position: absolute; width: 100%; height: 100%; background-color: rgb(0, 0, 0); display: flex;"/>
 </ui:UXML>

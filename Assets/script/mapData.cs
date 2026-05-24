@@ -18,4 +18,9 @@ public static class mapData
     // score
     public static int leftScore = 0;
     public static int rightScore = 0;
+    public static int round = 0;
+
+    // turn
+    public static int turn = 0;
+    public static int missileTurn = 0;
 }

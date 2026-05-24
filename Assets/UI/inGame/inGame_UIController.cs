@@ -16,6 +16,7 @@ public class inGame_UIController : MonoBehaviour
     private VisualElement fadeLayer;
     private VisualElement winningMessage;
     private VisualElement back;
+    private VisualElement turn;
     private Label youWin;
     private Button quit;
     private Button backToMenu;
@@ -61,6 +62,9 @@ public class inGame_UIController : MonoBehaviour
 
         // start fade
         fadeLayer.style.display = DisplayStyle.Flex;
+
+        // turn
+        turn = root.Q<VisualElement>("Turn");
     }
 
     private void Update()
@@ -78,7 +82,7 @@ public class inGame_UIController : MonoBehaviour
             start = false;
         }
 
-        // fade out
+        // fade in
         if (alpha < 1 && end)
         {
             alpha += Time.deltaTime * 4;
@@ -93,21 +97,29 @@ public class inGame_UIController : MonoBehaviour
         leftAngle.text = "Angle : " + angle1.ToString("F2");
         rightAngle.text = "Angle : " +  angle2.ToString("F2");
 
+        // turn
+        if(mapData.turn == 0)
+            turn.style.backgroundColor = Color.red;
+        else
+            turn.style.backgroundColor = Color.blue;
+
         // score
         if(!stop)
+        {
             score.text = mapData.leftScore.ToString() + " : " + mapData.rightScore.ToString();
 
-        if(mapData.leftScore == 3 && !stop)
-        {
-            youWin.text = "Left Win";
-            stop = true;
-            Invoke("Win", 0.7f);
-        }
-        else if(mapData.rightScore == 3 && !stop)
-        {
-            youWin.text = "Right Win";
-            stop = true;
-            Invoke("Win", 0.7f);
+            if(mapData.leftScore == 3)
+            {
+                youWin.text = "Left Win";
+                stop = true;
+                Invoke("Win", 0.7f);
+            }
+            else if(mapData.rightScore == 3)
+            {
+                youWin.text = "Right Win";
+                stop = true;
+                Invoke("Win", 0.7f);
+            }
         }
     }
 
