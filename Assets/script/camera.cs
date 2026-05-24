@@ -7,6 +7,9 @@ public class camera : MonoBehaviour
     public Transform player1;
     public Transform player2;
 
+    [Header("Background Setting")]
+    public Color[] background;
+
     [Header("Camera Setting")]
     public float scale = 0.6f;
     public float minimumPlayerDistance = 22f;
@@ -21,6 +24,7 @@ public class camera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         trans = GetComponent<Transform>();
+        cam.backgroundColor = background[mapData.mapID];
     }
 
     void Update()

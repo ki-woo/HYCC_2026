@@ -467,6 +467,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::camera
   player1: {fileID: 1821486113}
   player2: {fileID: 1130450568}
+  background:
+  - {r: 1, g: 0.651706, b: 0.18396229, a: 0}
+  - {r: 0.11792451, g: 0.64148945, b: 1, a: 0}
+  - {r: 1, g: 0.29599106, b: 0, a: 0}
   scale: 0.6
   minimumPlayerDistance: 22
   minimumPlayerHeight: -4

@@ -24,6 +24,8 @@ public class mapGenerator : MonoBehaviour
     private Mesh mesh;
     private PolygonCollider2D col;
 
+    private Vector2[] gravity = new Vector2[3] {new Vector2(0, -3.71f), new Vector2(0, -9.81f), new Vector2(0, -24.79f)};
+
     private void Start()
     {
         trans = GetComponent<Transform>();
@@ -38,6 +40,8 @@ public class mapGenerator : MonoBehaviour
 
         mapData.leftScore = 0;
         mapData.rightScore = 0;
+
+        Physics2D.gravity = gravity[mapData.mapID];
     }
 
     public void Update()
