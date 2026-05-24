@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/UI/Control/Control.uss?fileID=7433441132597879392&amp;guid=0cf26298303fcbd428aac158e9a6945c&amp;type=3#Control"/>
     <ui:VisualElement name="Background" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/Asset/Space.png?fileID=2800000&amp;guid=4ecb598b03c4c5b45bea92168edb3474&amp;type=3#Space&quot;); background-size: 100% auto;"/>
     <ui:VisualElement name="Control" style="width: 100%; height: 100%; padding-top: 100px; padding-right: 100px; padding-bottom: 100px; padding-left: 100px; flex-direction: row;">
-        <ui:VisualElement name="RightControl" style="width: 50%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
-            <ui:Label text="Right Player" name="RightPlayer" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 120px; -unity-font-style: normal;"/>
+        <ui:VisualElement name="LeftControl" style="width: 50%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
+            <ui:Label text="Left Player" name="LeftPlayer" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 120px; -unity-font-style: normal;"/>
             <ui:VisualElement name="keyList" style="align-self: center; height: 95%; flex-shrink: 0;">
                 <ui:VisualElement name="KeyA" style="width: 700px; height: 150px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-direction: row; justify-content: space-between;">
                     <ui:Label text="A" name="Key" style="width: 120px; height: 120px; aspect-ratio: 1; background-color: rgb(245, 245, 219); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 100px; -unity-text-align: middle-center; align-self: center;"/>
@@ -27,8 +27,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="LeftControl" style="width: 50%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
-            <ui:Label text="Left Player" name="LeftPlayer" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 120px; -unity-font-style: normal;"/>
+        <ui:VisualElement name="RightControl" style="width: 50%; height: 100%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
+            <ui:Label text="Right Player" name="RightPlayer" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 120px; -unity-font-style: normal;"/>
             <ui:VisualElement name="keyList" style="align-self: center; height: 95%; flex-shrink: 0;">
                 <ui:VisualElement name="KeyJ" style="width: 700px; height: 150px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-direction: row; justify-content: space-between;">
                     <ui:Label text="J" name="Key" style="width: 120px; height: 120px; aspect-ratio: 1; background-color: rgb(245, 245, 219); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); font-size: 100px; -unity-text-align: middle-center; align-self: center;"/>
