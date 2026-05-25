@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=78000d167380cd0499aa10f4d23c756f&amp;type=3#MainMenu"/>
     <ui:VisualElement name="MainMenu" style="width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/Asset/Space.png?fileID=2800000&amp;guid=4ecb598b03c4c5b45bea92168edb3474&amp;type=3#Space&quot;); background-size: 100% auto;">
         <ui:VisualElement name="up" style="width: 100%; height: 30%; align-items: center; justify-content: flex-end;">
-            <ui:Label text="TITLE" name="Title" style="width: 800px; height: 150px; -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); color: rgb(255, 255, 255); -unity-text-align: lower-center; font-size: 170px;"/>
+            <ui:Label text="Planet Artillery" name="Title" style="width: 800px; height: 150px; -unity-font-definition: url(&quot;project://database/Assets/UI/Asset/BoldPixels.otf?fileID=12800000&amp;guid=19b9bfe81b147ba4f91b639e7c1b07d9&amp;type=3#BoldPixels&quot;); color: rgb(255, 255, 255); -unity-text-align: lower-center; font-size: 170px;"/>
         </ui:VisualElement>
         <ui:VisualElement name="Selection" style="width: 100%; height: 70%; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; justify-content: space-evenly; align-items: center;">
             <ui:Button text="Play" name="Play" class="Button"/>

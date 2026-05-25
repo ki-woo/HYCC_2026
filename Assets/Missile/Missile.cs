@@ -5,6 +5,7 @@ public class Missile : MonoBehaviour
 {
     private float explosionRadius = 1;
     private float power = 15f;
+    private float[] density = new float[3] {0.02f, 1.2f, 0.2f};
     private Transform trans;
     private Rigidbody2D rigid;
 
@@ -39,6 +40,12 @@ public class Missile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 drag = -1f / 2f * 0.47f * math.PI * 0.25f * density[mapData.mapID] * rigid.linearVelocity.magnitude * rigid.linearVelocity;
+        rigid.AddForce(drag);
     }
 
     private void ReformGround()
