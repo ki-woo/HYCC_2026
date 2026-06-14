@@ -2,7 +2,7 @@
 
 **HYCC** | Hanyoung HighSchool 2026 Project (public)
 
-Date : **May17-May26 2026** (9days)
+Date : **May17-26 2026** (9days)
 
 Partner : **MinjunKim**
 
